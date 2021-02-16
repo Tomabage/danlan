@@ -11,27 +11,22 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "Types",
-  props:['xxx'],
-  data() {
-    return {
-      type: '-'
+
+<script lang="ts">
+import Vue from 'vue'
+import {Component} from 'vue-property-decorator'
+
+@Component
+export default class Types extends Vue {
+  type = '-'
+  selectType(type: string) {
+    if (type !== '-' && type !== '+') {
+      throw new Error('type is unknown')
     }
-  },
-  mounted() {
-    console.log(this.xxx)
-  },
-  methods: {
-    selectType(type) {
-      if (type !== '-' && type !== '+') {
-        throw new Error('type is unknown')
-      }
-      this.type = type
-    }
+    this.type = type
   }
 }
+
 </script>
 
 <style lang="scss" scoped>
@@ -59,7 +54,5 @@ export default {
       background: #333;
     }
   }
-
-
 }
 </style>
