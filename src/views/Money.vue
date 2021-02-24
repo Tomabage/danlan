@@ -15,7 +15,7 @@ import NumberPad from '@/components/Money/NumberPad.vue'
 import Types from '@/components/Money/Types.vue'
 import FormItem from '@/components/Money/FormItem.vue'
 import Tags from '@/components/Money/Tags.vue'
-import {Component,Watch} from 'vue-property-decorator'
+import {Component, Watch} from 'vue-property-decorator'
 import recordListModel from '@/models/recordListModel'
 import tagListModel from '@/models/tagListModel'
 
@@ -28,7 +28,7 @@ const tagList = tagListModel.fetch()
 })
 export default class Money extends Vue {
   tags = tagList
-  recordList: RecordItem[]= recordList
+  recordList: RecordItem[] = recordList
   record: RecordItem = {
     tags: [],
     notes: '',
@@ -44,13 +44,14 @@ export default class Money extends Vue {
     this.record.notes = value
   }
 
-  saveRecord(){
-    const record2: RecordItem=recordListModel.clone(this.record)
-    record2.createdTime=new Date()
+  saveRecord() {
+    const record2: RecordItem = recordListModel.clone(this.record)
+    record2.createdTime = new Date()
     this.recordList.push(record2)
   }
+
   @Watch('recordList')
-  onRecordListChange(){
+  onRecordListChange() {
     recordListModel.save(this.recordList)
   }
 
@@ -62,7 +63,8 @@ export default class Money extends Vue {
   display: flex;
   flex-direction: column-reverse;
 }
-.notes{
+
+.notes {
   padding: 12px 0;
 }
 </style>
